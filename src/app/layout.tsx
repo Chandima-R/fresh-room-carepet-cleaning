@@ -1,23 +1,27 @@
 import type { Metadata } from "next";
 import { Fraunces, IBM_Plex_Mono, Manrope } from "next/font/google";
 import "./globals.css";
+import { LoadingScreen } from "@/modules/shared/components/loading-screen";
 
 const fraunces = Fraunces({
   variable: "--font-fraunces",
   subsets: ["latin"],
   display: "swap",
+  weight: ["400", "500", "600", "700"],
 });
 
 const manrope = Manrope({
   variable: "--font-manrope",
   subsets: ["latin"],
   display: "swap",
+  weight: ["400", "500", "600", "700", "800"],
 });
 
 const ibmPlexMono = IBM_Plex_Mono({
   variable: "--font-plex-mono",
   subsets: ["latin"],
   display: "swap",
+  weight: ["400", "500"],
 });
 
 export const metadata: Metadata = {
@@ -67,7 +71,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en-GB"
       className={`${fraunces.variable} ${manrope.variable} ${ibmPlexMono.variable}`}
     >
-      <body>{children}</body>
+      <body>
+        <LoadingScreen />
+        <div>{children}</div>
+      </body>
     </html>
   );
 }
