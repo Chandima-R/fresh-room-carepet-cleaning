@@ -1,13 +1,16 @@
 import type { Metadata } from "next";
-import { Fraunces, IBM_Plex_Mono, Manrope } from "next/font/google";
+import localFont from "next/font/local";
+import { IBM_Plex_Mono, Manrope } from "next/font/google";
 import "./globals.css";
 import { LoadingScreen } from "@/modules/shared/components/loading-screen";
+import { Navbar } from "@/modules/navigation/components/navbar";
 
-const fraunces = Fraunces({
-  variable: "--font-fraunces",
-  subsets: ["latin"],
+const victoryStriker = localFont({
+  src: "../modules/fonts/VictoryStrikerSans.otf",
+  variable: "--font-victory-striker",
   display: "swap",
-  weight: ["400", "500", "600", "700"],
+  weight: "400",
+  style: "normal",
 });
 
 const manrope = Manrope({
@@ -69,10 +72,11 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en-GB"
-      className={`${fraunces.variable} ${manrope.variable} ${ibmPlexMono.variable}`}
+      className={`${victoryStriker.variable} ${manrope.variable} ${ibmPlexMono.variable}`}
     >
       <body>
         <LoadingScreen />
+        <Navbar />
         <div>{children}</div>
       </body>
     </html>
